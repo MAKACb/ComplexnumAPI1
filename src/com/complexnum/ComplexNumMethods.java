@@ -1,17 +1,16 @@
 package com.complexnum;
 
-public abstract class ComplexNumMethods {
-    //MOD method returns module of the complex number and calls like x.MOD(ComplexNum s)
-    //or for x like a x.MOD(x) and can be use for example ''double a=x.MOD(x);''
-    public double MOD(ComplexNumber z)
+abstract class Cplx {
+    //MOD method returns module of the complex number and calls like Cplx.MOD(ComplexNum s)
+    public static double MOD(ComplexNumber z)
     {
         return Math.pow(Math.pow(z.getIM(),2)+Math.pow(z.getRE(),2),0.5);
     }
 
     //it is an ariphmethic form translator that can be print in string format
     //and also can be saved in string type operand like
-    //String St=x.AFORMPRINT(ComplexNum x); (or something ComplexNum type)
-    //where x is a initialised ComplexNum object
+    //String St=Cplx.AFORMPRINT(ComplexNum x); (or something ComplexNum type)
+    //where x is an initialised ComplexNum object
     public static String AFORMPRINT(ComplexNumber z)
     {
         String S;
@@ -28,33 +27,34 @@ public abstract class ComplexNumMethods {
     }
 
     //it is an exponential form printing method of the complex numbers that return
-    //String data about our complex number that is an initialised ComplexNum type object
-    public String EFORMPRINT (ComplexNumber z)
+    //String format
+    public static String EFORMPRINT (ComplexNumber z)
     {
         String S;
-        S=(z.MOD(z)+"e^i"+Math.atan(z.getIM()/z.getRE())/Math.PI*180); //e^(i*DEG)
+        S=(Cplx.MOD(z)+"e^i"+Math.atan(z.getIM()/z.getRE())/Math.PI*180); //e^(i*DEG)
         return S;
     }
 
     //it is a method that can sum 2 complex numbers which was initialised like
     //ComplexNum objects in 1 ComplexNum object
-    //it can be used like Z=Z.SUM(Z1,Z2);
+    //it can be used like Z=Cplx.SUM(Z1,Z2);
     //(if we have a Z,Z1,Z2 initialised objects ComplexNum type)
-    public ComplexNumber SUM(ComplexNumber z1,ComplexNumber z2)
+    public static ComplexNumber SUM(ComplexNumber z1,ComplexNumber z2)
     {
         ComplexNumber z=new ComplexNumber(z1.getRE()+z2.getRE(),z1.getIM()+z2.getIM());
         return z;
     }
 
-    //this method multiplying 2 ComplexNum complex numbers and return ComplexNum type
-    public ComplexNumber MUL(ComplexNumber z1, ComplexNumber z2)
+    //this method multiplying 2 ComplexNumber complex numbers and return ComplexNumber type
+    public static ComplexNumber MUL(ComplexNumber z1, ComplexNumber z2)
     {
-        ComplexNumber z=new ComplexNumber(z1.getRE()*z2.getIM()-z1.getIM()*z2.getIM(),z1.getIM()*z2.getRE()+z1.getRE()*z2.getIM());
+        ComplexNumber z=new ComplexNumber(z1.getRE()*z2.getIM()-z1.getIM()*z2.getIM(),
+                z1.getIM()*z2.getRE()+z1.getRE()*z2.getIM());
         return z;
     }
 
-    //this method deviding 2 ComplexNum complex numbers first on second
-    //and return ComplexNum type value
+    //this method deviding 2 ComplexNumber complex numbers first on second
+    //and return ComplexNumber type value
     public ComplexNumber DEV(ComplexNumber z1, ComplexNumber z2)
     {
         ComplexNumber z=new ComplexNumber(
