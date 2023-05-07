@@ -1,0 +1,27 @@
+import telebot
+
+def delete_all_messages_from(message_id:int, chat_id:int)->bool:
+    i = message_id
+    if i>0:
+        while i>=0:
+            try:
+                bot.delete_message(chat_id=chat_id, message_id=i)
+                i-=1
+            except:
+                i-=1
+    else:
+        while i<=0:
+            try:
+                bot.delete_message(chat_id=chat_id, message_id=i)
+                i+=1
+            except:
+                i+=1
+
+bot = telebot.TeleBot('')
+
+@bot.message_handler(commands = ['deleteAll'])
+def say(message):
+    msg = bot.send_message(message.chat.id, 'deleting...')
+    delete_all_messages_from(msg.message_id, msg.chat.id)
+
+bot.polling(none_stop=True)
